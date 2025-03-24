@@ -9,3 +9,27 @@ body {
     margin: auto;
     display: block;
 }
+
+#logo {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 250px;
+    animation: blink 2s infinite;
+}
+
+#gameOver {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    display: none;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}

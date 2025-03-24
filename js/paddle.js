@@ -36,7 +36,7 @@ class Paddle {
             29, 174, // Coordenadas dentro del sprite
             this.paddleWidth, this.paddleHeight, // Tamaño de la pala
             this.paddleX, this.paddleY, // Posición en el canvas
-            this.paddleWidth, this.paddleHeight 
+            this.paddleWidth, this.paddleHeight
         );
     }
 

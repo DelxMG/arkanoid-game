@@ -32,8 +32,7 @@ class Ball {
 
         // Game Over si llega a la parte inferior
         if (this.y + this.dy > this.canvas.height + this.ballRadius) {
-            console.log('Game Over');
-            document.location.reload(); // Reinicia el juego
+            gameOver = true;
         }
 
         // Colisión con la pala
