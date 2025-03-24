@@ -5,8 +5,8 @@ class Ball {
         this.ballRadius = 4; // Radio de la pelota
         this.x = canvas.width / 2; // Posición inicial en X
         this.y = canvas.height - 30; // Posición inicial en Y
-        this.dx = 3; // Velocidad en el eje X
-        this.dy = -3; // Velocidad en el eje Y
+        this.dx = 1.5; // Velocidad en el eje X
+        this.dy = -1.5; // Velocidad en el eje Y
     }
 
     // Función para dibujar la pelota
