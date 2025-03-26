@@ -29,6 +29,10 @@ class Paddle {
         return this.paddleY;
     }
 
+    reset() {
+        this.paddleX = (this.canvas.width - this.paddleWidth) / 2;
+        this.paddleY = this.canvas.height - this.paddleHeight - 10;
+    }
     // Función para dibujar la paleta
     draw() {
         this.ctx.drawImage(

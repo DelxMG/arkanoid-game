@@ -9,6 +9,9 @@ class Game {
         this.leftPressed = false;
         this.gameOverImg = document.getElementById('gameOver');
         this.startButton = document.getElementById('start');
+        this.isRunning = false;
+        this.gameStopped = false;
+        this.animationId = null;
     }
 
     cleanCanvas() {
@@ -17,43 +20,45 @@ class Game {
 
     // Función principal del ciclo de animación del juego
     draw() {
-        this.cleanCanvas(); // Limpiar el canvas
+        this.cleanCanvas();
 
-        this.ball.draw(); // Dibujar la pelota
-        this.ball.move(this.paddle, this.bricks); // Mover la pelota y detectar colisiones
+        this.ball.draw();
+        this.ball.move(this.paddle, this.bricks); 
 
-        this.paddle.draw(); // Dibujar la pala
-        this.paddle.move(this.rightPressed, this.leftPressed); // Mover la pala según las teclas presionadas
+        this.paddle.draw(); 
+        this.paddle.move(this.rightPressed, this.leftPressed); 
 
-        this.bricks.draw(); // Dibujar los ladrillos
+        this.bricks.draw();
 
+        // Verificar si el juego debe detenerse
         if (this.ball.ballOut) {
-            this.gameOverImg.style.display = 'block'; // Mostrar la imagen de "Game Over"
-            this.startButton.style.display = 'inline';  
+            this.gameOverImg.style.display = 'block'; 
+            this.startButton.style.display = 'flex';  
         } else {
-            window.requestAnimationFrame(() => this.draw()); // Llamar a draw de forma recursiva
+            // Continuar con la animación si el juego no está detenido
+            this.animationId = window.requestAnimationFrame(() => this.draw());
         }
     }
 
     // Función para manejar el evento de cuando se presiona una tecla
     keyDownHandler(event) {
         if (event.key === 'ArrowRight') {
-            this.rightPressed = true; // Asignar true cuando la tecla de la flecha derecha se presiona
+            this.rightPressed = true; 
         }
 
         if (event.key === 'ArrowLeft') {
-            this.leftPressed = true; // Asignar true cuando la tecla de la flecha izquierda se presiona
+            this.leftPressed = true; 
         }
     }
 
     // Función para manejar el evento de cuando se suelta una tecla
     keyUpHandler(event) {
         if (event.key === 'ArrowRight') {
-            this.rightPressed = false;  // Asignar false cuando la tecla de la flecha derecha se suelta
+            this.rightPressed = false; 
         }
 
         if (event.key === 'ArrowLeft') {
-            this.leftPressed = false; // Asignar false cuando la tecla de la flecha izquierda se suelta
+            this.leftPressed = false; 
         }
     }
 
@@ -65,13 +70,49 @@ class Game {
 
     startGame() {
         this.startButton.addEventListener('click', () => {
-            document.getElementById('logo').style.display = 'none';
-            this.startButton.style.display = 'none';  
-            this.startButton.innerText = 'Restart';
-            this.initEvents();
-            this.draw();
+            if (!this.isRunning) { // Solo empezar si no está corriendo
+                document.getElementById('logo').style.display = 'none';
+                this.startButton.style.display = 'none';  
+                this.startButton.innerText = 'Restart';
+                this.isRunning = true;
+                this.gameStopped = false; // Asegurarse de que el juego no está detenido
+                this.initEvents();
+                this.draw(); // Iniciar el juego
+            }
         });
     }
 
+    restartGame() {
+        this.isRunning = true; 
+        this.gameStopped = false; // Asegurarse de que el juego no está detenido
+
+        // Cancelar la animación anterior si existe
+        if (this.animationId) {
+            window.cancelAnimationFrame(this.animationId);
+        }
+
+        // Limpiar el canvas y ocultar la imagen de Game Over
+        this.gameOverImg.style.display = 'none';
+        this.startButton.style.display = 'none';
+
+        // Reiniciar la pelota, la pala y los ladrillos
+        this.ball.reset();
+        this.paddle.reset();
+        this.bricks.reset();
+
+        // Iniciar el ciclo de animación
+        this.draw();
+    }
+
+    stopGame() {
+        // Detener la animación
+        if (this.animationId) {
+            window.cancelAnimationFrame(this.animationId);
+            this.gameStopped = true; 
+        }
+
+        this.startButton.style.display = 'flex';
+        this.startButton.innerText = 'Restart';
+    }
 }
 

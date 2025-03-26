@@ -52,6 +52,11 @@ class Bricks {
         }
     }
 
+    
+    reset(){
+        this.draw();
+    }
+
     // Función para detectar colisiones con los ladrillos
     collisionDetection(ball) {
         for (let c = 0; c < this.brickColumnCount; c++) {
@@ -75,3 +80,4 @@ class Bricks {
         return false;
     }
 }
+

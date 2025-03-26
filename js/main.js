@@ -6,7 +6,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = 448;
 canvas.height = 400;
 
-// Crear los objetos del juego (pelota, pala y ladrillos)
+// Crear los objetos del juego
 const ball = new Ball(canvas, ctx);
 const paddle = new Paddle(canvas, ctx);
 const bricks = new Bricks(canvas, ctx);
@@ -14,15 +14,18 @@ const bricks = new Bricks(canvas, ctx);
 // Crear la instancia del juego
 const game = new Game(canvas, ctx, ball, paddle, bricks);
 
-// Obtener el logo
-const logo = document.getElementById('logo');
+// Manejador del botón de inicio/reinicio
+game.startButton.addEventListener('click', () => {
+    if (game.isRunning) {
+        game.restartGame(); // Reiniciar el juego si ya está corriendo
+    } else if (!game.isRunning || game.gameStopped) {
+        game.startGame(); // Empezar el juego
+    }
+});
+
+const stopButton = document.getElementById('stop');
 
 
-if(game.startGame()){
-    logo.style.display = 'none'; 
-} 
-   
-
-game.startGame();
-
-
+stopButton.addEventListener('click', () => {
+    game.stopGame();
+})

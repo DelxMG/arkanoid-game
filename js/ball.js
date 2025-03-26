@@ -10,25 +10,35 @@ class Ball {
         this.ballOut = false;
     }
 
+    reset() {
+        this.x = this.canvas.width / 2;
+        this.y = this.canvas.height - 30;
+        this.dx = 2;
+        this.dy = -2;
+        this.ballOut = false;
+    }
+    
+
     // Función para dibujar la pelota
     draw() {
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2); // Dibuja un círculo
-        this.ctx.fillStyle = '#fff'; // Color blanco para la pelota
+        this.ctx.fillStyle = '#fff'; 
         this.ctx.fill();
         this.ctx.closePath();
     }
     
     // Función para mover la pelota y detectar colisiones
     move(paddle, bricks) {
+
         // Colisiones con las paredes laterales
         if (this.x + this.dx > this.canvas.width - this.ballRadius || this.x + this.dx < this.ballRadius) {
-            this.dx = -this.dx; // cambio de diagonal
+            this.dx = -this.dx; 
         }
 
         // Colisión en la pared superior
         if (this.y + this.dy < this.ballRadius) {
-            this.dy = -this.dy; // Cambio de dirección
+            this.dy = -this.dy; 
         }
 
         // Game Over si llega a la parte inferior
@@ -43,12 +53,12 @@ class Ball {
             this.y < (paddle.getPaddleY() + paddle.getPaddleHeight());
 
         if (isBallSameXAsPaddle && isBallTouchingPaddle) {
-            this.dy = -this.dy; // Rebote hacia arriba
+            this.dy = -this.dy; 
         }
 
         // Colisión con los ladrillos
         if (bricks.collisionDetection(this)) {
-            this.dy = -this.dy; // Rebote tras destruir un ladrillo
+            this.dy = -this.dy; 
         }
 
         // Actualizar las posiciones de la pelota
