@@ -7,6 +7,7 @@ class Ball {
         this.y = canvas.height - 30; // Posición inicial en Y
         this.dx = 1.5; // Velocidad en el eje X
         this.dy = -1.5; // Velocidad en el eje Y
+        this.ballOut = false;
     }
 
     // Función para dibujar la pelota
@@ -32,7 +33,7 @@ class Ball {
 
         // Game Over si llega a la parte inferior
         if (this.y + this.dy > this.canvas.height + this.ballRadius) {
-            gameOver = true;
+            this.ballOut = true;
         }
 
         // Colisión con la pala

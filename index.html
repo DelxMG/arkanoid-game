@@ -8,14 +8,24 @@
 </head>
 
 <body>
+    <div id="container">
     <canvas id="gameCanvas"></canvas>
+    <div id="button-container">
+        <button id="options" class="button">Options</button>
+        <button id="start" class="button">Start</button>
+        <button id="stop" class="button">Stop</button>
+    </div>
+    </div>
+
     <img hidden id='bricks' src="img/bricks.png" alt='Arkanoid Bricks Sprite'>
     <img hidden id='sprite' src="img/sprite.png" alt="Arkanoid Sprite">
     <img id='logo' src="img/logo.png" alt="Arkanoid Logo">
     <img id='gameOver' src="img/gameOver.png" alt="Game Over">
+   
     <script src="js/ball.js"></script>
     <script src="js/bricks.js"></script>
     <script src="js/paddle.js"></script>
+    <script src="js/game.js"> </script>
     <script src="js/main.js"></script>
 </body>
 

@@ -43,9 +43,9 @@ class Paddle {
     // Función para mover la paleta en función de la tecla presionada
     move(rightPressed, leftPressed) {
         if (rightPressed && this.paddleX < (this.canvas.width - this.paddleWidth)) {
-            this.paddleX += 7; // Mover a la derecha
+            this.paddleX += 4; // Mover a la derecha
         } else if (leftPressed && this.paddleX > 0) {
-            this.paddleX -= 7; // Mover a la izquierda
+            this.paddleX -= 4; // Mover a la izquierda
         }
     }
 }

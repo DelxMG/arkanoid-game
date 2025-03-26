@@ -1,19 +1,33 @@
 body {
     background-color: #111;
+    justify-content: center;
+    height: 100vh;
+    display: flex;
+}
+
+#container {
+    position: relative; /* Esto hace que el logo se posicione con respecto al contenedor */
+    display: flex;
+    flex-direction: column;
 }
 
 #gameCanvas {
     border: 4px solid #fff;
     border-bottom: transparent;
     background: url('../img/bkg.png') repeat;
-    margin: auto;
-    display: block;
+}
+
+#button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 #logo {
     position: absolute;
     top: 20%;
-    left: 50%;
+    left: 50%; 
     transform: translate(-50%, -50%);
     max-width: 250px;
     animation: blink 2s infinite;
@@ -32,4 +46,26 @@ body {
     50% {
         opacity: 0;
     }
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #092446;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    height: 30px;
+    display: flex;           
+    justify-content: center;  
+    align-items: center;      
+    text-align: center;
+    font-size: 15px;
+}
+
+#button-container .button:nth-child(2) {
+    background-color: #f31c1c; /* Cambia el color de fondo del segundo botón */
+    color: white; /* Cambia el color del texto */
 }
