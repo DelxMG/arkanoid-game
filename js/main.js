@@ -16,7 +16,7 @@ const game = new Game(canvas, ctx, ball, paddle, bricks);
 
 // Manejador del botón de inicio/reinicio
 game.startButton.addEventListener('click', () => {
-  game.startGame();
+    game.startGame();
 });
 
 const stopButton = document.getElementById('stop');
@@ -24,4 +24,7 @@ const stopButton = document.getElementById('stop');
 
 stopButton.addEventListener('click', () => {
     game.stopGame();
-})
+});
+
+
+

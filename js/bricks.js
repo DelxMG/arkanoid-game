@@ -15,10 +15,10 @@ class Bricks {
             DESTROYED: 0 // Ladrillo destruido
         };
         this.brickImage = document.getElementById('bricks'); // Cargar sprite de los ladrillos
-        
+
         // Crear la matriz de ladrillos
         for (let c = 0; c < this.brickColumnCount; c++) {
-            this.bricks[c] = []; 
+            this.bricks[c] = [];
             for (let r = 0; r < this.brickRowCount; r++) {
                 const brickX = c * (this.brickWidth + this.brickPadding) + this.brickOffsetLeft;
                 const brickY = r * (this.brickHeight + this.brickPadding) + this.brickOffsetTop;
@@ -52,17 +52,17 @@ class Bricks {
         }
     }
 
-    
-    reset(){
-        for (let c = 0; c < this.brickColumnCount; c++){
-            for (let r = 0; r < this.brickRowCount; r++){
+
+    reset() {
+        for (let c = 0; c < this.brickColumnCount; c++) {
+            for (let r = 0; r < this.brickRowCount; r++) {
                 this.bricks[c][r].status = this.brickStatus.ACTIVE;
             }
         }
 
         this.draw();
-     
-        }
+
+    }
 
 
     // Función para detectar colisiones con los ladrillos
@@ -81,7 +81,7 @@ class Bricks {
 
                 if (isBallSameXAsBrick && isBallTouchingBrick) {
                     currentBrick.status = this.brickStatus.DESTROYED; // Marcar el ladrillo como destruido
-                    return true; 
+                    return true;
                 }
             }
         }

@@ -56,19 +56,26 @@ class Game {
     }
 
     startGame() {
-            if (!this.isRunning && !this.isStopped) { // Solo iniciar si no está corriendo
-                document.getElementById('logo').style.display = 'none';
-                this.startButton.style.display = 'none';
-                this.startButton.innerText = 'Restart';
-                this.isRunning = true;
-                this.initEvents();
-                this.draw();
-            } else if (this.isStopped && !this.isRunning) {
-                this.resumeGame(); // Si está detenido, reanudar en lugar de reiniciar
-            } else if (this.gameFinish && !this.isStopped && this.isRunning) {
-                this.restartGame(); // Si ya está corriendo, reiniciar
-            }
-        };
+        if (!this.isRunning && !this.isStopped) { // Solo iniciar si no está corriendo
+            document.getElementById('logo').style.display = 'none';
+            this.startButton.style.display = 'none';
+            this.startButton.innerText = 'Restart';
+            this.isRunning = true;
+            this.initEvents();
+            this.draw();
+        } else if (this.isStopped && !this.isRunning) {
+            this.resumeGame(); // Si está detenido, reanudar en lugar de reiniciar
+        } else if (this.gameFinish && !this.isStopped && this.isRunning) {
+            this.restartGame(); // Si ya está corriendo, reiniciar
+        }
+    };
+
+    cancelAnimation() {
+        if (this.animationId) {
+            window.cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+    }
 
 
     restartGame() {
@@ -76,13 +83,11 @@ class Game {
         this.isStopped = false;
         this.gameFinish = false;
 
-        if (this.animationId) {
-            window.cancelAnimationFrame(this.animationId);
-        }
+        this.cancelAnimation();
 
         this.gameOverImg.style.display = 'none';
         this.startButton.style.display = 'none';
-        
+
         this.ball.reset();
         this.paddle.reset();
         this.bricks.reset();
@@ -91,16 +96,15 @@ class Game {
     }
 
     stopGame() {
-        if(!this.gameFinish){
-            if (this.animationId) {
-                window.cancelAnimationFrame(this.animationId);
-                this.isStopped = true;
-                this.isRunning = false;
-                this.startButton.style.display = 'flex';
-                this.startButton.innerText = 'Resume'; 
+        if (!this.gameFinish) {
+
+            this.cancelAnimation();
+            this.isStopped = true;
+            this.isRunning = false;
+            this.startButton.style.display = 'flex';
+            this.startButton.innerText = 'Resume';
         }
     }
-}
 
     resumeGame() {
         if (this.isStopped) {
@@ -108,9 +112,7 @@ class Game {
             this.isRunning = true;
             this.startButton.style.display = 'none';
 
-            if (this.animationId) {
-                window.cancelAnimationFrame(this.animationId); // Evita acumulación de frames
-            }
+            this.cancelAnimation();
 
             this.animationId = requestAnimationFrame(() => this.draw());
         }

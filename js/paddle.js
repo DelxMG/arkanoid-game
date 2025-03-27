@@ -6,6 +6,7 @@ class Paddle {
         this.paddleWidth = 50; // Ancho de la pala
         this.paddleX = (canvas.width - this.paddleWidth) / 2; // Posición inicial en X
         this.paddleY = canvas.height - this.paddleHeight - 10; // Posición inicial en Y
+        this.paddleSensibility = 4;
         this.sprite = document.getElementById('sprite'); // Cargar sprite de la pala
     }
 
@@ -47,9 +48,9 @@ class Paddle {
     // Función para mover la paleta en función de la tecla presionada
     move(rightPressed, leftPressed) {
         if (rightPressed && this.paddleX < (this.canvas.width - this.paddleWidth)) {
-            this.paddleX += 4; // Mover a la derecha
+            this.paddleX += this.paddleSensibility; // Mover a la derecha
         } else if (leftPressed && this.paddleX > 0) {
-            this.paddleX -= 4; // Mover a la izquierda
+            this.paddleX -= this.paddleSensibility; // Mover a la izquierda
         }
     }
 }

@@ -6,7 +6,7 @@ body {
 }
 
 #container {
-    position: relative; 
+    position: relative;
     display: flex;
     flex-direction: column;
 }
@@ -27,7 +27,7 @@ body {
 #logo {
     position: absolute;
     top: 20%;
-    left: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%);
     max-width: 250px;
     animation: blink 2s infinite;
@@ -36,7 +36,7 @@ body {
 #gameOver {
     position: absolute;
     top: 20%;
-    left: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%);
     max-width: 350px;
     display: none;
@@ -58,14 +58,24 @@ body {
     cursor: pointer;
     width: 120px;
     height: 30px;
-    display: flex;           
-    justify-content: center;  
-    align-items: center;      
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-size: 15px;
 }
 
 #button-container .button:nth-child(2) {
-    background-color: #f31c1c; /* Cambia el color de fondo del segundo botón */
-    color: white; /* Cambia el color del texto */
+    background-color: #f31c1c;
+    /* Cambia el color de fondo del segundo botón */
+    color: white;
+    /* Cambia el color del texto */
+}
+
+#option-container {
+    position: absolute;
+    top: 200px;
+    width: 200px;
+    height: 200px;
+    display: flex;
 }
