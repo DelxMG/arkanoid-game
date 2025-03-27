@@ -12,6 +12,7 @@ class Game {
         this.startButton = document.getElementById('start');
         this.isRunning = false;
         this.gameFinish = false;
+        this.gameWin = false;
         this.isStopped = false;
         this.score = score;
         this.animationId = null;
@@ -23,22 +24,25 @@ class Game {
 
     draw() {
         this.cleanCanvas();
-
+        
         this.ball.draw();
         this.ball.move(this.paddle, this.bricks);
-
+    
         this.paddle.draw();
         this.paddle.move(this.rightPressed, this.leftPressed);
-
+    
         this.bricks.draw();
-
-        if (this.ball.ballOut) {
+    
+        this.win(); 
+    
+      
+        if (this.ball.ballOut && !this.gameWin) {
             this.gameOverImg.style.display = 'block';
             this.startButton.style.display = 'flex';
-            this.startButton.innerText = 'Restart'; 
+            this.startButton.innerText = 'Restart';
             this.score.resetScore();
             this.gameFinish = true;
-        } else {
+        } else if (!this.gameWin) {
             this.animationId = window.requestAnimationFrame(() => this.draw());
         }
     }
@@ -100,7 +104,6 @@ class Game {
 
     stopGame() {
         if (!this.gameFinish) {
-
             this.cancelAnimation();
             this.isStopped = true;
             this.isRunning = false;
@@ -121,8 +124,13 @@ class Game {
         }
     }
 
-    winGame(){
-            this.stopGame();
-            this.winImg.style.display = 'block';
+    win(){
+        if(this.isRunning){
+            if(bricks.checkAllBricksDestroyed()){
+                this.gameWin = true;
+                this.winImg.style.display = 'block';
+                this.cleanCanvas();
+            }
+        }
     }
 }

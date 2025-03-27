@@ -1,4 +1,3 @@
-
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -45,14 +44,9 @@ options.manageSensitivity();
 game.startButton.addEventListener('click', () => {
     options.closeOptions();
     game.startGame(); 
-
-    if(bricks.checkAllBricksDestroyed()){
-    game.winGame();
-    }
 });
 
 const stopButton = document.getElementById('stop');
-
 
 stopButton.addEventListener('click', () => {
     game.stopGame();
