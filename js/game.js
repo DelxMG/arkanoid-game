@@ -122,7 +122,6 @@ class Game {
     }
 
     winGame(){
-            this.cleanCanvas();
             this.stopGame();
             this.winImg.style.display = 'block';
     }

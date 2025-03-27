@@ -66,20 +66,6 @@ class Bricks {
 
     }
 
-
-    checkAllBricksDestroyed() {
-        for (let c = 0; c < this.brickColumnCount; c++) {
-            for (let r = 0; r < this.brickRowCount; r++) {
-                const currentBrick = this.bricks[c][r];
-                if (currentBrick.status === this.brickStatus.ACTIVE) {
-                    return false; 
-                }
-            }
-        }
-        return true;  
-    }
-
-
     collisionDetection(ball) {
         for (let c = 0; c < this.brickColumnCount; c++) {
             for (let r = 0; r < this.brickRowCount; r++) {
@@ -102,6 +88,20 @@ class Bricks {
         }
         return false;
     }
+
+
+    checkAllBricksDestroyed() {
+        for (let c = 0; c < this.brickColumnCount; c++) {
+            for (let r = 0; r < this.brickRowCount; r++) {
+                const currentBrick = this.bricks[c][r];
+                if (currentBrick.status === this.brickStatus.ACTIVE) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 
 
 }
