@@ -11,20 +11,9 @@ const ball = new Ball(canvas, ctx);
 const paddle = new Paddle(canvas, ctx);
 const bricks = new Bricks(canvas, ctx);
 
+
 // Crear la instancia del juego
 const game = new Game(canvas, ctx, ball, paddle, bricks);
-// Manejador del botón de inicio/reinicio
-game.startButton.addEventListener('click', () => {
-    game.startGame();
-});
-
-const stopButton = document.getElementById('stop');
-
-
-stopButton.addEventListener('click', () => {
-    game.stopGame();
-});
-
 const options = new Options(paddle, ball, game);
 
 
@@ -51,3 +40,17 @@ hardButton.addEventListener('click', () => {
 });
 
 options.manageSensitivity();
+
+
+// Manejador del botón de inicio/reinicio
+game.startButton.addEventListener('click', () => {
+    options.closeOptions();
+    game.startGame(); 
+});
+
+const stopButton = document.getElementById('stop');
+
+
+stopButton.addEventListener('click', () => {
+    game.stopGame();
+});

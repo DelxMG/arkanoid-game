@@ -15,6 +15,10 @@ class Options {
             }
         }
 
+    closeOptions(){
+        this.optionContainer.style.display = 'none';
+    }
+
     manageDifficulty(level){
         
         switch(level){
