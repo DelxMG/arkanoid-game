@@ -24,11 +24,12 @@
     <img id='gameOver' src="img/gameOver.png" alt="Game Over">
 
     
-    <div id="option-container">
-        di
-        <label for="sensitivity-slider">Sensibilidad:</label>
-        <input type="range" id="sensitivity-slider" min="1" max="10" value="5">
-
+    <div hidden id ="option-container">
+        <div id="sensitivity-container">
+        <label id="sensitivity" >Sensibilidad:</label>
+        <input type="range" id="sensitivity-slider" min="1" max="10" value="5" step='1'>
+        <span id="sensitivity-value"> 5 </span>
+        </div>
         <div id="dificult-container">
             <button id="easy" class="dificult-button"> Easy </button>
             <button id="medium" class="dificult-button"> Medium </button>
@@ -39,6 +40,7 @@
     <script src="js/ball.js"></script>
     <script src="js/bricks.js"></script>
     <script src="js/paddle.js"></script>
+    <script src="js/options.js"></script>
     <script src="js/game.js"> </script>
     <script src="js/main.js"></script>
 
