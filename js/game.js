@@ -33,7 +33,7 @@ class Game {
         if (this.ball.ballOut) {
             this.gameOverImg.style.display = 'block';
             this.startButton.style.display = 'flex';
-            this.startButton.innerText = 'Restart'; // Asegurar que diga Restart en Game Over
+            this.startButton.innerText = 'Restart'; 
             this.gameFinish = true;
         } else {
             this.animationId = window.requestAnimationFrame(() => this.draw());
@@ -56,7 +56,7 @@ class Game {
     }
 
     startGame() {
-        if (!this.isRunning && !this.isStopped) { // Solo iniciar si no está corriendo
+        if (!this.isRunning && !this.isStopped) { 
             document.getElementById('logo').style.display = 'none';
             this.startButton.style.display = 'none';
             this.startButton.innerText = 'Restart';
@@ -64,9 +64,9 @@ class Game {
             this.initEvents();
             this.draw();
         } else if (this.isStopped && !this.isRunning) {
-            this.resumeGame(); // Si está detenido, reanudar en lugar de reiniciar
+            this.resumeGame(); 
         } else if (this.gameFinish && !this.isStopped && this.isRunning) {
-            this.restartGame(); // Si ya está corriendo, reiniciar
+            this.restartGame(); 
         }
     };
 

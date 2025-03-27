@@ -10,7 +10,7 @@ class Options {
     }
 
     manageOptions() {
-            if ((!this.game.isRunning && !this.game.isStopped) || this.game.gameFinish) {
+            if (!this.game.isRunning || this.game.isStopped || this.game.gameFinish) {
                 this.optionContainer.style.display = this.optionContainer.style.display === 'flex' ? 'none' : 'flex';
             }
         }
@@ -34,8 +34,6 @@ class Options {
             case 'hard':
             this.ball.setBallSpeed(6);
         }
-
-        this.ball.reset();
     }
 
     manageSensitivity(){

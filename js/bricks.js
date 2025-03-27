@@ -2,17 +2,17 @@ class Bricks {
     constructor(canvas, ctx) {
         this.canvas = canvas;
         this.ctx = ctx;
-        this.brickRowCount = 6; // Número de filas de ladrillos
-        this.brickColumnCount = 13; // Número de columnas de ladrillos
-        this.brickWidth = 32; // Ancho de cada ladrillo
-        this.brickHeight = 16; // Alto de cada ladrillo
-        this.brickPadding = 2; // Espacio entre ladrillos
-        this.brickOffsetTop = 35; // Desplazamiento de los ladrillos desde la parte superior
-        this.brickOffsetLeft = 5; // Desplazamiento de los ladrillos desde la parte izquierda
+        this.brickRowCount = 6; 
+        this.brickColumnCount = 13; 
+        this.brickWidth = 32; 
+        this.brickHeight = 16; 
+        this.brickPadding = 2; 
+        this.brickOffsetTop = 35;
+        this.brickOffsetLeft = 5; 
         this.bricks = [];
         this.brickStatus = {
-            ACTIVE: 1, // Ladrillo activo
-            DESTROYED: 0 // Ladrillo destruido
+            ACTIVE: 1, 
+            DESTROYED: 0 
         };
         this.brickImage = document.getElementById('bricks'); // Cargar sprite de los ladrillos
 
@@ -22,8 +22,8 @@ class Bricks {
             for (let r = 0; r < this.brickRowCount; r++) {
                 const brickX = c * (this.brickWidth + this.brickPadding) + this.brickOffsetLeft;
                 const brickY = r * (this.brickHeight + this.brickPadding) + this.brickOffsetTop;
-                const random = Math.floor(Math.random() * 8); // Color aleatorio para cada ladrillo
-                this.bricks[c][r] = { // Objeto con la información de cada ladrillo
+                const random = Math.floor(Math.random() * 8);
+                this.bricks[c][r] = { 
                     x: brickX,
                     y: brickY,
                     status: this.brickStatus.ACTIVE,
@@ -39,12 +39,12 @@ class Bricks {
             for (let r = 0; r < this.brickRowCount; r++) {
                 const currentBrick = this.bricks[c][r];
                 if (currentBrick.status === this.brickStatus.ACTIVE) {
-                    const clipX = currentBrick.color * 32; // Seleccionar el color del ladrillo
+                    const clipX = currentBrick.color * 32; 
                     this.ctx.drawImage(
                         this.brickImage,
-                        clipX, 0, // Recortar la imagen
-                        this.brickWidth, this.brickHeight, // Tamaño del ladrillo
-                        currentBrick.x, currentBrick.y, // Posición del ladrillo
+                        clipX, 0, 
+                        this.brickWidth, this.brickHeight,
+                        currentBrick.x, currentBrick.y, 
                         this.brickWidth, this.brickHeight
                     );
                 }
@@ -65,13 +65,13 @@ class Bricks {
     }
 
 
-    // Función para detectar colisiones con los ladrillos
+   
     collisionDetection(ball) {
         for (let c = 0; c < this.brickColumnCount; c++) {
             for (let r = 0; r < this.brickRowCount; r++) {
                 const currentBrick = this.bricks[c][r];
                 if (currentBrick.status === this.brickStatus.DESTROYED) {
-                    continue; // Si el ladrillo está destruido, lo ignoramos
+                    continue; 
                 }
 
                 const isBallSameXAsBrick = ball.x > currentBrick.x &&
@@ -80,7 +80,7 @@ class Bricks {
                     ball.y < (currentBrick.y + this.brickHeight);
 
                 if (isBallSameXAsBrick && isBallTouchingBrick) {
-                    currentBrick.status = this.brickStatus.DESTROYED; // Marcar el ladrillo como destruido
+                    currentBrick.status = this.brickStatus.DESTROYED;
                     return true;
                 }
             }
