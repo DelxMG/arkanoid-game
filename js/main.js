@@ -16,11 +16,7 @@ const game = new Game(canvas, ctx, ball, paddle, bricks);
 
 // Manejador del botón de inicio/reinicio
 game.startButton.addEventListener('click', () => {
-    if (game.isRunning) {
-        game.restartGame(); // Reiniciar el juego si ya está corriendo
-    } else if (!game.isRunning || game.gameStopped) {
-        game.startGame(); // Empezar el juego
-    }
+  game.startGame();
 });
 
 const stopButton = document.getElementById('stop');

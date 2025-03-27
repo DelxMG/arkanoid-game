@@ -10,7 +10,8 @@ class Game {
         this.gameOverImg = document.getElementById('gameOver');
         this.startButton = document.getElementById('start');
         this.isRunning = false;
-        this.gameStopped = false;
+        this.gameFinish = false;
+        this.isStopped = false;
         this.animationId = null;
     }
 
@@ -18,101 +19,100 @@ class Game {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    // Función principal del ciclo de animación del juego
     draw() {
         this.cleanCanvas();
 
         this.ball.draw();
-        this.ball.move(this.paddle, this.bricks); 
+        this.ball.move(this.paddle, this.bricks);
 
-        this.paddle.draw(); 
-        this.paddle.move(this.rightPressed, this.leftPressed); 
+        this.paddle.draw();
+        this.paddle.move(this.rightPressed, this.leftPressed);
 
         this.bricks.draw();
 
-        // Verificar si el juego debe detenerse
         if (this.ball.ballOut) {
-            this.gameOverImg.style.display = 'block'; 
-            this.startButton.style.display = 'flex';  
+            this.gameOverImg.style.display = 'block';
+            this.startButton.style.display = 'flex';
+            this.startButton.innerText = 'Restart'; // Asegurar que diga Restart en Game Over
+            this.gameFinish = true;
         } else {
-            // Continuar con la animación si el juego no está detenido
             this.animationId = window.requestAnimationFrame(() => this.draw());
         }
     }
 
-    // Función para manejar el evento de cuando se presiona una tecla
     keyDownHandler(event) {
-        if (event.key === 'ArrowRight') {
-            this.rightPressed = true; 
-        }
-
-        if (event.key === 'ArrowLeft') {
-            this.leftPressed = true; 
-        }
+        if (event.key === 'ArrowRight') this.rightPressed = true;
+        if (event.key === 'ArrowLeft') this.leftPressed = true;
     }
 
-    // Función para manejar el evento de cuando se suelta una tecla
     keyUpHandler(event) {
-        if (event.key === 'ArrowRight') {
-            this.rightPressed = false; 
-        }
-
-        if (event.key === 'ArrowLeft') {
-            this.leftPressed = false; 
-        }
+        if (event.key === 'ArrowRight') this.rightPressed = false;
+        if (event.key === 'ArrowLeft') this.leftPressed = false;
     }
 
-    // Función para inicializar los eventos de teclado
     initEvents() {
         document.addEventListener('keydown', (event) => this.keyDownHandler(event));
         document.addEventListener('keyup', (event) => this.keyUpHandler(event));
     }
 
     startGame() {
-        this.startButton.addEventListener('click', () => {
-            if (!this.isRunning) { // Solo empezar si no está corriendo
+            if (!this.isRunning && !this.isStopped) { // Solo iniciar si no está corriendo
                 document.getElementById('logo').style.display = 'none';
-                this.startButton.style.display = 'none';  
+                this.startButton.style.display = 'none';
                 this.startButton.innerText = 'Restart';
                 this.isRunning = true;
-                this.gameStopped = false; // Asegurarse de que el juego no está detenido
                 this.initEvents();
-                this.draw(); // Iniciar el juego
+                this.draw();
+            } else if (this.isStopped && !this.isRunning) {
+                this.resumeGame(); // Si está detenido, reanudar en lugar de reiniciar
+            } else if (this.gameFinish && !this.isStopped && this.isRunning) {
+                this.restartGame(); // Si ya está corriendo, reiniciar
             }
-        });
-    }
+        };
+
 
     restartGame() {
-        this.isRunning = true; 
-        this.gameStopped = false; // Asegurarse de que el juego no está detenido
+        this.isRunning = true;
+        this.isStopped = false;
+        this.gameFinish = false;
 
-        // Cancelar la animación anterior si existe
         if (this.animationId) {
             window.cancelAnimationFrame(this.animationId);
         }
 
-        // Limpiar el canvas y ocultar la imagen de Game Over
         this.gameOverImg.style.display = 'none';
         this.startButton.style.display = 'none';
-
-        // Reiniciar la pelota, la pala y los ladrillos
+        
         this.ball.reset();
         this.paddle.reset();
         this.bricks.reset();
 
-        // Iniciar el ciclo de animación
         this.draw();
     }
 
     stopGame() {
-        // Detener la animación
-        if (this.animationId) {
-            window.cancelAnimationFrame(this.animationId);
-            this.gameStopped = true; 
+        if(!this.gameFinish){
+            if (this.animationId) {
+                window.cancelAnimationFrame(this.animationId);
+                this.isStopped = true;
+                this.isRunning = false;
+                this.startButton.style.display = 'flex';
+                this.startButton.innerText = 'Resume'; 
         }
-
-        this.startButton.style.display = 'flex';
-        this.startButton.innerText = 'Restart';
     }
 }
 
+    resumeGame() {
+        if (this.isStopped) {
+            this.isStopped = false;
+            this.isRunning = true;
+            this.startButton.style.display = 'none';
+
+            if (this.animationId) {
+                window.cancelAnimationFrame(this.animationId); // Evita acumulación de frames
+            }
+
+            this.animationId = requestAnimationFrame(() => this.draw());
+        }
+    }
+}

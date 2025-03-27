@@ -6,7 +6,7 @@ body {
 }
 
 #container {
-    position: relative; /* Esto hace que el logo se posicione con respecto al contenedor */
+    position: relative; 
     display: flex;
     flex-direction: column;
 }
@@ -35,10 +35,10 @@ body {
 
 #gameOver {
     position: absolute;
-    top: 30%;
-    left: 50%;
+    top: 20%;
+    left: 50%; 
     transform: translate(-50%, -50%);
-    max-width: 400px;
+    max-width: 350px;
     display: none;
 }
 

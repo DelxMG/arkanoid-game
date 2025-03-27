@@ -54,8 +54,16 @@ class Bricks {
 
     
     reset(){
+        for (let c = 0; c < this.brickColumnCount; c++){
+            for (let r = 0; r < this.brickRowCount; r++){
+                this.bricks[c][r].status = this.brickStatus.ACTIVE;
+            }
+        }
+
         this.draw();
-    }
+     
+        }
+
 
     // Función para detectar colisiones con los ladrillos
     collisionDetection(ball) {
