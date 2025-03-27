@@ -1,8 +1,35 @@
+@font-face {
+    font-family: 'Arkanoid'; /* El nombre que quieres asignar a la fuente */
+    src: url('fonts/Arka_solid.ttf') format('truetype'); /* Ruta del archivo .ttf */
+    font-weight: normal;
+    font-style: normal;
+}
+
+#score-container {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+
+#score-container p {
+    font-family: 'Arkanoid';
+    margin: 5px 0;
+    font-weight: bold; 
+}
+
+#score-container span {
+    font-size: 22px;
+    margin-right: 10px; 
+    font-family: 'Arkanoid';
+}
+
 body {
     background-color: #111;
     justify-content: center;
     height: 100vh;
     display: flex;
+    align-items: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -27,7 +54,7 @@ body {
 
 #logo {
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 250px;
@@ -36,11 +63,20 @@ body {
 
 #gameOver {
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 350px;
     display: none;
+}
+
+#win {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 350px;
+    animation: blink 2s infinite;
 }
 
 @keyframes blink {
@@ -131,6 +167,7 @@ body {
     color: #092446;
     font-weight: bold;
 }
+
 #sensitivity-slider {
     appearance: none;
     width: 100%; 

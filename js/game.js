@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, ctx, ball, paddle, bricks) {
+    constructor(canvas, ctx, ball, paddle, bricks, score) {
         this.canvas = canvas;
         this.ctx = ctx;
         this.ball = ball;
@@ -8,10 +8,12 @@ class Game {
         this.rightPressed = false;
         this.leftPressed = false;
         this.gameOverImg = document.getElementById('gameOver');
+        this.winImg = document.getElementById('win');
         this.startButton = document.getElementById('start');
         this.isRunning = false;
         this.gameFinish = false;
         this.isStopped = false;
+        this.score = score;
         this.animationId = null;
     }
 
@@ -34,6 +36,7 @@ class Game {
             this.gameOverImg.style.display = 'block';
             this.startButton.style.display = 'flex';
             this.startButton.innerText = 'Restart'; 
+            this.score.resetScore();
             this.gameFinish = true;
         } else {
             this.animationId = window.requestAnimationFrame(() => this.draw());
@@ -116,5 +119,11 @@ class Game {
 
             this.animationId = requestAnimationFrame(() => this.draw());
         }
+    }
+
+    winGame(){
+            this.cleanCanvas();
+            this.stopGame();
+            this.winImg.style.display = 'block';
     }
 }

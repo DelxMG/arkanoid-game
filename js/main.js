@@ -9,11 +9,11 @@ canvas.height = 400;
 
 const ball = new Ball(canvas, ctx);
 const paddle = new Paddle(canvas, ctx);
-const bricks = new Bricks(canvas, ctx);
+const score = new Score();
+const bricks = new Bricks(canvas, ctx, score);
 
 
-
-const game = new Game(canvas, ctx, ball, paddle, bricks);
+const game = new Game(canvas, ctx, ball, paddle, bricks, score);
 const options = new Options(paddle, ball, game);
 
 
@@ -45,6 +45,10 @@ options.manageSensitivity();
 game.startButton.addEventListener('click', () => {
     options.closeOptions();
     game.startGame(); 
+
+    if(bricks.checkAllBricksDestroyed()){
+    game.winGame();
+    }
 });
 
 const stopButton = document.getElementById('stop');

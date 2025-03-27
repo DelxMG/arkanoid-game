@@ -8,7 +8,14 @@
 </head>
 
 <body>
+ 
     <div id="container">
+        <div id="score-container"> 
+            <p>HIGH SCORE</p>
+            <span id="high-score">0</span>
+            <p>SCORE </p>
+            <span id="current-score">0</span>
+        </div>
         <canvas id="gameCanvas"></canvas>
         <div id="button-container">
             <button id="options" class="button">Options</button>
@@ -22,6 +29,7 @@
     <img hidden id='sprite' src="img/sprite.png" alt="Arkanoid Sprite">
     <img id='logo' src="img/logo.png" alt="Arkanoid Logo">
     <img id='gameOver' src="img/gameOver.png" alt="Game Over">
+    <img hidden id='win' src="img/win.png" alt="'You Win">
 
     
     <div hidden id ="option-container">
@@ -42,6 +50,7 @@
     <script src="js/paddle.js"></script>
     <script src="js/options.js"></script>
     <script src="js/game.js"> </script>
+    <script src="js/score.js"> </script>
     <script src="js/main.js"></script>
 
 </body>
