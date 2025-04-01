@@ -8,7 +8,6 @@
 </head>
 
 <body>
- 
     <div id="container">
         <div id="score-container"> 
             <p>HIGH SCORE</p>
@@ -18,30 +17,28 @@
         </div>
         <canvas id="gameCanvas"></canvas>
         <div id="button-container">
-            <button id="options" class="button">Options</button>
-            <button id="start" class="button">Start</button>
-            <button id="stop" class="button">Stop</button>
+            <button id="options" class="button" role="button">Options</button>
+            <button id="start" class="button start" role="button">Start</button>
+            <button id="stop" class="button stop" role="button">Stop</button>
         </div>
     </div>
 
-
-    <img hidden id='bricks' src="img/bricks.png" alt='Arkanoid Bricks Sprite'>
-    <img hidden id='sprite' src="img/sprite.png" alt="Arkanoid Sprite">
+    <img hidden id='bricks' src="img/bricks.png" alt='Arkanoid Bricks Sprite' aria-hidden="true">
+    <img hidden id='sprite' src="img/sprite.png" alt="Arkanoid Sprite" aria-hidden="true">
     <img id='logo' src="img/logo.png" alt="Arkanoid Logo">
-    <img id='gameOver' src="img/gameOver.png" alt="Game Over">
-    <img hidden id='win' src="img/win.png" alt="'You Win">
-
+    <img id='gameOver' src="img/gameOver.png" alt="Game Over" style="display: none;">
+    <img hidden id='win' src="img/win.png" alt="You Win" aria-hidden="true">
     
-    <div hidden id ="option-container">
+    <div hidden id="option-container">
         <div id="sensitivity-container">
-        <label id="sensitivity" >Sensibilidad:</label>
-        <input type="range" id="sensitivity-slider" min="1" max="10" value="5" step='1'>
-        <span id="sensitivity-value"> 5 </span>
+            <label for="sensitivity-slider">Sensibilidad:</label>
+            <input type="range" id="sensitivity-slider" min="1" max="10" value="5" step="1">
+            <span id="sensitivity-value">5</span>
         </div>
-        <div id="dificult-container">
-            <button id="easy" class="dificult-button"> Easy </button>
-            <button id="medium" class="dificult-button"> Medium </button>
-            <button id="hard" class="dificult-button"> Hard </button>
+        <div id="difficulty-container">
+            <button id="easy" class="difficulty-button" role="button">Easy</button>
+            <button id="medium" class="difficulty-button" role="button">Medium</button>
+            <button id="hard" class="difficulty-button" role="button">Hard</button>
         </div>
     </div>
 
@@ -49,10 +46,9 @@
     <script src="js/bricks.js"></script>
     <script src="js/paddle.js"></script>
     <script src="js/options.js"></script>
-    <script src="js/game.js"> </script>
-    <script src="js/score.js"> </script>
+    <script src="js/game.js"></script>
+    <script src="js/score.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>

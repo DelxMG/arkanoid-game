@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Arkanoid'; /* El nombre que quieres asignar a la fuente */
-    src: url('fonts/Arka_solid.ttf') format('truetype'); /* Ruta del archivo .ttf */
+    font-family: 'Arkanoid'; 
+    src: url('fonts/Arka_solid.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
 }
@@ -102,11 +102,11 @@ body {
 }
 
 .button:hover {
-    background-color: #3b5b7f; /* Cambia el color cuando el usuario pasa el mouse */
+    background-color: #3b5b7f; 
 }
 
 .button:active {
-    background-color: #5c86b9; /* Cambia el color cuando se hace clic */
+    background-color: #5c86b9; 
 }
 
 
@@ -125,7 +125,7 @@ body {
 
 #option-container {
     position: absolute;
-    top: 100px;
+    top: 250px;
     width: 300px;
     height: 200px;
     flex-direction: column;
@@ -138,7 +138,7 @@ body {
 }
 
 
-.dificult-button {
+.difficulty-button {
     background-color: #092446;
     color: #fff;
     font-weight: bold;
@@ -150,11 +150,11 @@ body {
     border-radius: 10px;
 }
 
-.dificult-button:hover {
+.difficulty-button:hover {
     background-color: #3b5b7f; 
 }
 
-.dificult-button:active {
+.difficulty-button:active {
     background-color: #5c86b9; 
 }
 

@@ -13,15 +13,14 @@ class Ball {
 
     setBallSpeed(ballSpeed) {
         this.ballSpeed = ballSpeed;
-        this.dx = ballSpeed; // Actualiza dx
-        this.dy = -ballSpeed; // Actualiza dy
+        this.dx = ballSpeed;
+        this.dy = -ballSpeed; 
     }
 
     reset() {
         this.x = this.canvas.width / 2;
         this.y = this.canvas.height - 30;
-        this.dx = this.ballSpeed; 
-        this.dy = -this.ballSpeed; 
+        this.setBallSpeed(this.ballSpeed); 
         this.ballOut = false;
     }
 
@@ -34,30 +33,47 @@ class Ball {
     }
     
     move(paddle, bricks) {
-        if (this.x + this.dx > this.canvas.width - this.ballRadius || this.x + this.dx < this.ballRadius) {
-            this.dx = -this.dx; 
-        }
+        this.#bounceOffWalls();
+        this.#bounceOffPaddle(paddle);
+        this.#checkBrickCollision(bricks);
+        this.#checkOutOfBounds();
+        
+        this.x += this.dx;
+        this.y += this.dy;
+    }
 
+    #bounceOffWalls() {
+        if (this.x + this.dx > this.canvas.width - this.ballRadius || this.x + this.dx < this.ballRadius) {
+            this.dx = -this.dx;
+        }
         if (this.y + this.dy < this.ballRadius) {
+            this.dy = -this.dy;
+        }
+    }
+
+    #bounceOffPaddle(paddle) {
+        const paddleX = paddle.getPaddleX();
+        const paddleY = paddle.getPaddleY();
+        const paddleWidth = paddle.getPaddleWidth();
+        const paddleHeight = paddle.getPaddleHeight();
+
+        if (
+            this.x > paddleX && this.x < paddleX + paddleWidth &&
+            this.y + this.dy >= paddleY && this.y + this.dy <= paddleY + paddleHeight
+        ) {
             this.dy = -this.dy; 
         }
+    }
 
+    #checkBrickCollision(bricks) {
+        if (bricks.collisionDetection(this)) {
+            this.dy = -this.dy;
+        }
+    }
+
+    #checkOutOfBounds() {
         if (this.y + this.dy > this.canvas.height + this.ballRadius) {
             this.ballOut = true;
         }
-
-        const isBallSameXAsPaddle = this.x > paddle.getPaddleX() && this.x < (paddle.getPaddleX() + paddle.getPaddleWidth());
-        const isBallTouchingPaddle = this.y + this.dy > paddle.getPaddleY() && this.y < (paddle.getPaddleY() + paddle.getPaddleHeight());
-
-        if (isBallSameXAsPaddle && isBallTouchingPaddle) {
-            this.dy = -this.dy; 
-        }
-
-        if (bricks.collisionDetection(this)) {
-            this.dy = -this.dy; 
-        }
-
-        this.x += this.dx;
-        this.y += this.dy;
     }
 }
