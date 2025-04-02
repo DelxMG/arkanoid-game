@@ -142,6 +142,7 @@ class Game {
         this.startButton.style.display = 'none';
         this.startButton.innerText = 'Restart';
         this.isRunning = true;
+        this.cancelAnimation();
         this.initEvents();
         this.draw();
     }
