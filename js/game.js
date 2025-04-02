@@ -94,7 +94,9 @@ class Game {
 
     // Gestiona la visibilidad de las opciones
     manageOptions() {
-        this.optionContainer.style.display = this.optionContainer.style.display === 'flex' ? 'none' : 'flex';
+        if (!this.isRunning){
+            this.optionContainer.style.display = this.optionContainer.style.display === 'flex' ? 'none' : 'flex';
+        }
     }
 
     // Gestiona la dificultad
@@ -133,8 +135,11 @@ class Game {
         } else if (this.gameFinish && !this.isStopped && this.isRunning) {
             this.restartGame();
             this.optionContainer.style.display = 'none'; 
-        }
+        } else if (this.gameWin){
+            this.winImg.style.display = 'none';
+            this.restartGame();
     }
+}
 
     // Comienza un juego nuevo
     startNewGame() {
@@ -160,6 +165,7 @@ class Game {
         this.isRunning = true;
         this.isStopped = false;
         this.gameFinish = false;
+        this.gameWin = false;
 
         this.cancelAnimation();
         
@@ -203,6 +209,9 @@ class Game {
             this.gameWin = true;
             this.winImg.style.display = 'block';
             this.cleanCanvas();
+
+            this.startButton.style.display = 'block';
+            this.startButton.innerText = 'Restart';
         }
     }
 }
