@@ -11,11 +11,13 @@ const bricks = new Bricks(canvas, ctx, score);
 
 const game = new Game(canvas, ctx, ball, paddle, bricks, score);
 
+
 // Comienza el juego
 game.startButton.addEventListener('click', () => {
     game.startGame(); 
 });
 
+// Detiene el juego
 const stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => {
     game.stopGame();

@@ -17,6 +17,7 @@ class Game {
 
         this.animationId = null;
 
+        
         this.gameOverImg = document.getElementById('gameOver');
         this.winImg = document.getElementById('win');
         this.startButton = document.getElementById('start');
@@ -27,6 +28,10 @@ class Game {
         this.sensitivitySlider = document.getElementById('sensitivity-slider');
         this.sensitivityValue = document.getElementById('sensitivity-value');
         this.optionContainer = document.getElementById('option-container');
+
+        this.gameMusic = document.getElementById("game-music");
+        this.gameOverMusic = document.getElementById("gameover-music");
+
 
         this.initButtons();
     }
@@ -63,6 +68,7 @@ class Game {
         this.startButton.innerText = 'Restart';
         this.score.resetScore(); 
         this.gameFinish = true;
+        this.playMusic(this.gameOverMusic);
     }
 
     // Detecta las teclas presionadas
@@ -139,6 +145,9 @@ class Game {
             this.winImg.style.display = 'none';
             this.restartGame();
     }
+
+    this.stopAllMusic(); 
+    this.playMusic(this.gameMusic);
 }
 
     // Comienza un juego nuevo
@@ -147,6 +156,7 @@ class Game {
         this.startButton.style.display = 'none';
         this.startButton.innerText = 'Restart';
         this.isRunning = true;
+        this.playMusic(this.gameMusic); 
         this.cancelAnimation();
         this.initEvents();
         this.draw();
@@ -169,6 +179,7 @@ class Game {
 
         this.cancelAnimation();
         
+        
         this.gameOverImg.style.display = 'none';
         this.startButton.style.display = 'none';
         
@@ -178,6 +189,7 @@ class Game {
 
         this.score.resetScore();
 
+        this.playMusic(this.gameMusic);
         this.draw();
     }
 
@@ -214,4 +226,25 @@ class Game {
             this.startButton.innerText = 'Restart';
         }
     }
+
+    // Reproduce la música, deteniendo cualquier otra música en curso
+    playMusic(audio) {
+        
+        this.stopAllMusic();
+        audio.currentTime = 0; 
+        
+        if (audio != this.gameOverMusic){
+            audio.loop = true;
+        }
+        
+        audio.play();
+    }
+
+     // Detiene toda la música
+    stopAllMusic() {
+        this.gameMusic.pause();
+        this.gameOverMusic.pause();
+    }
+
+
 }
