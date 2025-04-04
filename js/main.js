@@ -12,6 +12,14 @@ const bricks = new Bricks(canvas, ctx, score);
 const game = new Game(canvas, ctx, ball, paddle, bricks, score);
 
 
+document.addEventListener("click", function playStartMusicLoop() {
+    game.startMusic.loop = true;
+    game.playMusic(game.startMusic);
+    
+    document.removeEventListener("click", playStartMusicLoop); 
+});
+
+
 // Comienza el juego
 game.startButton.addEventListener('click', () => {
     game.startGame(); 
