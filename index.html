@@ -9,7 +9,7 @@
 
 <body>
     <div id="container">
-        <div id="score-container"> 
+        <div id="score-container">
             <p>HIGH SCORE</p>
             <span id="high-score">0</span>
             <p>SCORE </p>
@@ -21,33 +21,34 @@
             <button id="start" class="button start" role="button">Start</button>
             <button id="stop" class="button stop" role="button">Stop</button>
         </div>
+
+
+        <img hidden id='bricks' src="img/bricks.png" alt='Arkanoid Bricks Sprite' aria-hidden="true">
+        <img hidden id='sprite' src="img/sprite.png" alt="Arkanoid Sprite" aria-hidden="true">
+        <img id='logo' src="img/logo.png" alt="Arkanoid Logo">
+        <img id='gameOver' src="img/gameOver.png" alt="Game Over" style="display: none;">
+        <img hidden id='win' src="img/win.png" alt="You Win" aria-hidden="true">
+
+        <div hidden id="option-container">
+            <div id="sensitivity-container">
+                <label for="sensitivity-slider">Sensibilidad:</label>
+                <input type="range" id="sensitivity-slider" min="1" max="10" value="5" step="1">
+                <span id="sensitivity-value">5</span>
+            </div>
+            <div id="difficulty-container">
+                <button id="easy" class="difficulty-button" role="button">Easy</button>
+                <button id="medium" class="difficulty-button" role="button">Medium</button>
+                <button id="hard" class="difficulty-button" role="button">Hard</button>
+            </div>
+        </div>
     </div>
 
-    <img hidden id='bricks' src="img/bricks.png" alt='Arkanoid Bricks Sprite' aria-hidden="true">
-    <img hidden id='sprite' src="img/sprite.png" alt="Arkanoid Sprite" aria-hidden="true">
-    <img id='logo' src="img/logo.png" alt="Arkanoid Logo">
-    <img id='gameOver' src="img/gameOver.png" alt="Game Over" style="display: none;">
-    <img hidden id='win' src="img/win.png" alt="You Win" aria-hidden="true">
-    
-    <div hidden id="option-container">
-        <div id="sensitivity-container">
-            <label for="sensitivity-slider">Sensibilidad:</label>
-            <input type="range" id="sensitivity-slider" min="1" max="10" value="5" step="1">
-            <span id="sensitivity-value">5</span>
-        </div>
-        <div id="difficulty-container">
-            <button id="easy" class="difficulty-button" role="button">Easy</button>
-            <button id="medium" class="difficulty-button" role="button">Medium</button>
-            <button id="hard" class="difficulty-button" role="button">Hard</button>
-        </div>
-    </div>
-
-    <audio id="game-music"> 
-        <source src="music/05 Ending.mp3" type="audio/mpeg"> 
+    <audio id="game-music">
+        <source src="music/05 Ending.mp3" type="audio/mpeg">
     </audio>
-    
-    <audio id="gameover-music"> 
-        <source src="music/06 Game Over.mp3" type="audio/mpeg"> 
+
+    <audio id="gameover-music">
+        <source src="music/06 Game Over.mp3" type="audio/mpeg">
     </audio>
 
     <script src="js/ball.js"></script>

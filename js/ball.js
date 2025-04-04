@@ -1,12 +1,12 @@
 class Ball {
     constructor(canvas, ctx, ballSpeed = 1.5) {
-        this.canvas = canvas; 
+        this.canvas = canvas;
         this.ctx = ctx;
         this.ballRadius = 4;
         this.x = canvas.width / 2;
         this.y = canvas.height - 30;
         this.ballSpeed = ballSpeed;
-        this.dx = ballSpeed; 
+        this.dx = ballSpeed;
         this.dy = -ballSpeed;
         this.ballOut = false;
     }
@@ -14,13 +14,13 @@ class Ball {
     setBallSpeed(ballSpeed) {
         this.ballSpeed = ballSpeed;
         this.dx = ballSpeed;
-        this.dy = -ballSpeed; 
+        this.dy = -ballSpeed;
     }
 
     reset() {
         this.x = this.canvas.width / 2;
         this.y = this.canvas.height - 30;
-        this.setBallSpeed(this.ballSpeed); 
+        this.setBallSpeed(this.ballSpeed);
         this.ballOut = false;
     }
 
@@ -31,13 +31,13 @@ class Ball {
         this.ctx.fill();
         this.ctx.closePath();
     }
-    
+
     move(paddle, bricks) {
         this.#bounceOffWalls();
         this.#bounceOffPaddle(paddle);
         this.#checkBrickCollision(bricks);
         this.#checkOutOfBounds();
-        
+
         this.x += this.dx;
         this.y += this.dy;
     }
@@ -61,7 +61,7 @@ class Ball {
             this.x > paddleX && this.x < paddleX + paddleWidth &&
             this.y + this.dy >= paddleY && this.y + this.dy <= paddleY + paddleHeight
         ) {
-            this.dy = -this.dy; 
+            this.dy = -this.dy;
         }
     }
 

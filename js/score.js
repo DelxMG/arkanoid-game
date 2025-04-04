@@ -1,35 +1,35 @@
 class Score {
     constructor() {
-        this.score = 0;  
+        this.score = 0;
         this.scoreboard = document.getElementById('current-score');
         this.highScoreElement = document.getElementById('high-score');
         this.multiplier = 1;
 
         this.highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
-        this.updateScore(); 
+        this.updateScore();
     }
 
     updateScore() {
-        this.scoreboard.textContent = this.score;  
+        this.scoreboard.textContent = this.score;
         this.highScoreElement.textContent = this.highScore;
     }
 
 
     increaseScore(points) {
-        this.score += points * this.multiplier; 
-        this.updateScore();  
+        this.score += points * this.multiplier;
+        this.updateScore();
     }
 
-    resetScore(){
+    resetScore() {
         this.score = 0;
         this.updateScore();
     }
 
-    
+
     checkHighScore() {
         if (this.score > this.highScore) {
             this.highScore = this.score;
-            localStorage.setItem('highScore', this.highScore); 
+            localStorage.setItem('highScore', this.highScore);
             this.updateScore();
         }
     }

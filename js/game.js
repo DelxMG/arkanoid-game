@@ -17,7 +17,7 @@ class Game {
 
         this.animationId = null;
 
-        
+
         this.gameOverImg = document.getElementById('gameOver');
         this.winImg = document.getElementById('win');
         this.startButton = document.getElementById('start');
@@ -62,11 +62,11 @@ class Game {
 
     // Muestra la pantalla de "Game Over"
     showGameOver() {
-        this.score.checkHighScore(); 
+        this.score.checkHighScore();
         this.gameOverImg.style.display = 'block';
         this.startButton.style.display = 'flex';
         this.startButton.innerText = 'Restart';
-        this.score.resetScore(); 
+        this.score.resetScore();
         this.gameFinish = true;
         this.playMusic(this.gameOverMusic);
     }
@@ -100,16 +100,16 @@ class Game {
 
     // Gestiona la visibilidad de las opciones
     manageOptions() {
-        if (!this.isRunning){
+        if (!this.isRunning) {
             this.optionContainer.style.display = this.optionContainer.style.display === 'flex' ? 'none' : 'flex';
         }
     }
 
     // Gestiona la dificultad
     manageDifficulty(level) {
-        switch(level) {
-            case 'easy': 
-                this.ball.setBallSpeed(1.5); 
+        switch (level) {
+            case 'easy':
+                this.ball.setBallSpeed(1.5);
                 this.score.setMultiplier(1);
                 break;
             case 'medium':
@@ -137,18 +137,18 @@ class Game {
             this.optionContainer.style.display = 'none';
         } else if (this.isStopped && !this.isRunning) {
             this.resumeGame();
-            this.optionContainer.style.display = 'none'; 
+            this.optionContainer.style.display = 'none';
         } else if (this.gameFinish && !this.isStopped && this.isRunning) {
             this.restartGame();
-            this.optionContainer.style.display = 'none'; 
-        } else if (this.gameWin){
+            this.optionContainer.style.display = 'none';
+        } else if (this.gameWin) {
             this.winImg.style.display = 'none';
             this.restartGame();
-    }
+        }
 
-    this.stopAllMusic(); 
-    this.playMusic(this.gameMusic);
-}
+        this.stopAllMusic();
+        this.playMusic(this.gameMusic);
+    }
 
     // Comienza un juego nuevo
     startNewGame() {
@@ -156,7 +156,7 @@ class Game {
         this.startButton.style.display = 'none';
         this.startButton.innerText = 'Restart';
         this.isRunning = true;
-        this.playMusic(this.gameMusic); 
+        this.playMusic(this.gameMusic);
         this.cancelAnimation();
         this.initEvents();
         this.draw();
@@ -178,11 +178,11 @@ class Game {
         this.gameWin = false;
 
         this.cancelAnimation();
-        
-        
+
+
         this.gameOverImg.style.display = 'none';
         this.startButton.style.display = 'none';
-        
+
         this.ball.reset();
         this.paddle.reset();
         this.bricks.reset();
@@ -229,18 +229,18 @@ class Game {
 
     // Reproduce la música, deteniendo cualquier otra música en curso
     playMusic(audio) {
-        
+
         this.stopAllMusic();
-        audio.currentTime = 0; 
-        
-        if (audio != this.gameOverMusic){
+        audio.currentTime = 0;
+
+        if (audio != this.gameOverMusic) {
             audio.loop = true;
         }
-        
+
         audio.play();
     }
 
-     // Detiene toda la música
+    // Detiene toda la música
     stopAllMusic() {
         this.gameMusic.pause();
         this.gameOverMusic.pause();
