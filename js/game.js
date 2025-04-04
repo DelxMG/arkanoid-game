@@ -100,7 +100,7 @@ class Game {
 
     // Gestiona la visibilidad de las opciones
     manageOptions() {
-        if (!this.isRunning) {
+        if (!this.isRunning || this.isStopped || this.gameFinish) {
             this.optionContainer.style.display = this.optionContainer.style.display === 'flex' ? 'none' : 'flex';
         }
     }
@@ -146,8 +146,7 @@ class Game {
             this.restartGame();
         }
 
-        this.stopAllMusic();
-        this.playMusic(this.gameMusic);
+       
     }
 
     // Comienza un juego nuevo
